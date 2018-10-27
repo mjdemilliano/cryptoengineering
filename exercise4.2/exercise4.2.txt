@@ -1,0 +1,23 @@
+C and C' generated in CTR mode with the same nonce. The plaintext P corresponding to C is also known.
+
+CTR mode:
+
+    K_i = E(K, Nonce || i)
+    C_i = P_i XOR K_i
+
+C  = C_i = P_i XOR K_i = P_i XOR E(K, Nonce || i)
+C' = C_j = P_j XOR K_j = P_j XOR E(K, Nonce || j)
+
+It is given that the nonce used is the same, which is taken to be that the CTR mode is NOT correctly implemented and that therefore the second argument for E(K, .) is the same. Therefore K_j equals K_i and:
+
+    C_i = P_i XOR K_i
+    C_j = P_j XOR K_j = P_j XOR K_i
+
+So:
+
+    K_i = C_i XOR P_i = C_j XOR P_j
+
+So the plaintext of the other block P_j can be calculated:
+
+    P_j = C_i XOR P_i XOR C_j
+

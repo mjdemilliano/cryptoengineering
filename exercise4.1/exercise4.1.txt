@@ -1,0 +1,12 @@
+Definitions:
+ - Let P be a plaintext and let l(P) be the length of P in bytes.
+ - Let b be the block size of the block cipher in bytes.
+
+Explain why the following is not a good padding scheme:
+ - Determine the minimum number of padding bytes necessary in order to pad the plaintext to a block boundary. This is a number n which satisfies 0 ≤ n ≤ b−1 and n+l(P) is a multiple of b.
+ - Pad the plaintext by appending n bytes, each with value n.
+
+Problems:
+ - If n = 0, then 0 bytes are appended and the last byte of the padded plaintext is equal to the last byte of the unpadded plaintext.
+ - The receiver checks the last byte and thinks it is equal to n. In case n = 0, there will not be any padding byte, and so the last byte read will be part of the original plaintext. If this happens to be non-zero, then the receiver does not know whether this is the padding byte n repeated n times, or whether it is part of the original data.
+ - The receiver cannot be sure whether reading n times the value n as last bytes is due to padding or whether it was part of the original plaintext.
