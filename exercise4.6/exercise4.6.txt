@@ -1,0 +1,10 @@
+CBC:
+
+    C_i = E(K, P_i XOR C_i-1)
+    C_0 = IV
+
+C_1' = C_2 => E(K, P_1' XOR C_0') = E(K, P_2 XOR C_1)
+           => P_1' XOR IV2 = P_2 XOR C_1
+           => P_1' = P_2 XOR C_1 XOR C_0'
+
+So P_1' can be computed based on the information that is known to the attacker.
